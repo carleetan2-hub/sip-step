@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SipStep - 极简健康陪伴</title>
+    <title>SipStep - 你的健康陪伴小助手</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -34,9 +34,13 @@
             --c-main: #607D8B; --c-main-hover: #4F6A78; --c-light: #E0E7EA; --c-text: #ffffff; --c-ring: rgba(96,125,139,0.5);
             --c-bg: #F0F4F8; --c-text-main: #2C3E50; --c-text-muted: #546E7A; --c-card-bg: #ffffff; --c-card-bg-subtle: #F0F4F8; --c-border: #CFD8DC;
         }
+        :root[data-theme="slate"] {
+            --c-main: #0F172A; --c-main-hover: #1E293B; --c-light: #F1F5F9; --c-text: #ffffff; --c-ring: rgba(15,23,42,0.5);
+            --c-bg: #F8FAFC; --c-text-main: #0F172A; --c-text-muted: #64748B; --c-card-bg: #ffffff; --c-card-bg-subtle: #F1F5F9; --c-border: #E2E8F0;
+        }
         :root[data-theme="dark"] {
-            --c-main: #38BDF8; --c-main-hover: #0284C7; --c-light: #1E293B; --c-text: #ffffff; --c-ring: rgba(56,189,248,0.5);
-            --c-bg: #0F172A; --c-text-main: #F1F5F9; --c-text-muted: #94A3B8; --c-card-bg: #1E293B; --c-card-bg-subtle: #334155; --c-border: #334155;
+            --c-main: #E2E8F0; --c-main-hover: #CBD5E1; --c-light: #334155; --c-text: #0F172A; --c-ring: rgba(226,232,240,0.5);
+            --c-bg: #0F172A; --c-text-main: #F1F5F9; --c-text-muted: #94A3B8; --c-card-bg: #1E293B; --c-card-bg-subtle: #334155; --c-border: #475569;
         }
         :root[data-theme="cream"] {
             --c-main: #E9C46A; --c-main-hover: #D8B052; --c-light: #F4E8E1; --c-text: #ffffff; --c-ring: rgba(233,196,106,0.5);
@@ -88,7 +92,7 @@
                 </div>
                 <div>
                     <h1 class="font-bold text-2xl tracking-tight text-slate-900 leading-none">SipStep</h1>
-                    <p class="text-[10px] text-slate-500 mt-1 font-medium tracking-widest uppercase">极简健康陪伴</p>
+                    <p class="text-[10px] text-slate-500 mt-1 font-medium tracking-widest uppercase">你的健康陪伴小助手</p>
                 </div>
             </div>
             
@@ -227,8 +231,9 @@
                         <button class="w-8 h-8 rounded-full bg-[#A66E53] ring-2 ring-offset-2 ring-transparent transition-all hover:scale-110 theme-btn" data-color="fig" onclick="selectTheme('fig')"></button>
                         <button class="w-8 h-8 rounded-full bg-[#2D4A43] ring-2 ring-offset-2 ring-transparent transition-all hover:scale-110 theme-btn" data-color="spruce" onclick="selectTheme('spruce')"></button>
                         <button class="w-8 h-8 rounded-full bg-[#E5D3B3] ring-2 ring-offset-2 ring-transparent transition-all hover:scale-110 theme-btn" data-color="champagne" onclick="selectTheme('champagne')"></button>
+                        <button class="w-8 h-8 rounded-full bg-[#64748B] ring-2 ring-offset-2 ring-transparent transition-all hover:scale-110 theme-btn" data-color="slate" onclick="selectTheme('slate')"></button>
                         <button class="w-8 h-8 rounded-full bg-[#607D8B] ring-2 ring-offset-2 ring-transparent transition-all hover:scale-110 theme-btn" data-color="slate-blue" onclick="selectTheme('slate-blue')"></button>
-                        <button class="w-8 h-8 rounded-full bg-[#0F172A] ring-2 ring-offset-2 ring-transparent transition-all hover:scale-110 theme-btn" data-color="dark" onclick="selectTheme('dark')"></button>
+                        <button class="w-8 h-8 rounded-full border border-slate-600 bg-[#0F172A] ring-2 ring-offset-2 ring-transparent transition-all hover:scale-110 theme-btn" data-color="dark" onclick="selectTheme('dark')"></button>
                         <button class="w-8 h-8 rounded-full bg-[#E9C46A] ring-2 ring-offset-2 ring-transparent transition-all hover:scale-110 theme-btn" data-color="cream" onclick="selectTheme('cream')"></button>
                         <button class="w-8 h-8 rounded-full bg-[#2DD4BF] ring-2 ring-offset-2 ring-transparent transition-all hover:scale-110 theme-btn" data-color="mint" onclick="selectTheme('mint')"></button>
                     </div>
