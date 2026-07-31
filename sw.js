@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sipstep-cache-v1';
+const CACHE_NAME = 'sipstep-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',
