@@ -1,0 +1,6 @@
+{
+  "name": "久坐提醒助手",
+  "description": "一个专为办公族设计的久坐健康提醒与伸展拉伸指导网页应用。",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

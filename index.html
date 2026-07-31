@@ -543,11 +543,20 @@
             }
             if (savedTimers) {
                 const pt = JSON.parse(savedTimers);
+                const now = Date.now();
                 ['sit','water','eye'].forEach(k => {
                     if(pt[k]) {
                         timers[k].interval = pt[k].interval;
                         timers[k].remaining = pt[k].remaining;
-                        timers[k].running = false;
+                        timers[k].running = pt[k].running === true; // 恢复运行状态
+                        
+                        if (timers[k].running && pt[k].lastTick) {
+                            const elapsed = (now - pt[k].lastTick) / 1000;
+                            if (elapsed > 0) {
+                                timers[k].remaining -= elapsed;
+                            }
+                        }
+                        timers[k].lastTick = now;
                     }
                 });
             }
@@ -721,8 +730,8 @@
                         needsUIUpdate = true;
                         
                         if (t.remaining <= 0) {
-                            t.remaining = 0;
-                            t.running = false;
+                            // 自动轮播：归零后立即重置为初始时间并继续计时
+                            t.remaining = t.interval * 60;
                             triggerAlarm(type);
                         }
                     }
@@ -798,15 +807,20 @@
         }
 
         function triggerAlarm(type) {
-            if (state.activeAlarm) return;
-            state.activeAlarm = type;
-            
             const titles = { sit: "该走动啦！", water: "该喝水啦！", eye: "护眼时间！" };
             const texts = {
                 sit: "离开座位，伸个懒腰，让血液重新循环一下。🚶",
                 water: "接一杯温水，顺便和饮水机旁的同事打个招呼。👋",
                 eye: "望向远处，眨眨眼，让紧绷的视神经放松下来。🌿"
             };
+
+            // 无论弹窗是否已显示，都发送桌面通知
+            if (state.notificationsEnabled) {
+                sendDesktopNotification("SipStep: " + titles[type], texts[type]);
+            }
+
+            if (state.activeAlarm) return;
+            state.activeAlarm = type;
             
             document.getElementById('alarmTitle').innerText = titles[type];
             document.getElementById('alarmCardText').innerText = texts[type];
@@ -823,10 +837,6 @@
                 modal.classList.remove('opacity-0');
                 content.classList.remove('scale-95');
             }, 10);
-            
-            if (state.notificationsEnabled) {
-                sendDesktopNotification("SipStep: " + titles[type], texts[type]);
-            }
         }
 
         window.stopAlarm = function(completed) {
